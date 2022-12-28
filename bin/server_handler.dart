@@ -10,12 +10,12 @@ class MyServerHandler {
     });
 
     router.get('/ola/mundo/<usuario>', (Request request, String usuario) {
-      return Response(200, body: 'Ola mundo $usuario');
+      return Response.ok('Ola mundo $usuario');
     });
 
     router.get('/query', (Request request) {
       String? nome = request.url.queryParameters['nome'];
-      return Response(200, body: 'Query eh: $nome');
+      return Response.ok('Query eh: $nome');
     });
 
     return router;
