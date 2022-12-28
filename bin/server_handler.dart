@@ -8,7 +8,11 @@ class MyServerHandler {
     final router = Router();
 
     router.get('/', (Request request) {
-      return Response(200, body: 'Primeria Rota');
+      return Response(
+        200,
+        body: '<h1>Primeria Rota</h1>',
+        headers: {'content-type': 'text/html'},
+      );
     });
 
     router.get('/ola/mundo/<usuario>', (Request request, String usuario) {
@@ -28,7 +32,12 @@ class MyServerHandler {
       var senha = json['senha'];
 
       if (usuario == 'admin' && senha == '123') {
-        return Response.ok('Bem vindo $usuario');
+        Map resultResponse = {'token': 'token123', 'id': 1};
+        String jsonResponse = jsonEncode(resultResponse);
+        return Response.ok(
+          jsonResponse,
+          headers: {'content-type': 'application/json'},
+        );
       } else {
         return Response.forbidden('Acesso negado');
       }
