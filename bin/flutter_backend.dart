@@ -1,5 +1,9 @@
-import 'package:flutter_backend/flutter_backend.dart' as flutter_backend;
+import 'package:shelf/shelf.dart';
+import 'package:shelf/shelf_io.dart' as shelf_io;
 
-void main(List<String> arguments) {
-  print('Hello world: ${flutter_backend.calculate()}!');
+void main() async {
+  var server = await shelf_io.serve(
+      (request) => Response(200, body: 'ok'), 'localhost', 8080);
+
+  print('Serving at http://${server.address.host}:${server.port}');
 }
