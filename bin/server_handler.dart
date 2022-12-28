@@ -9,6 +9,15 @@ class MyServerHandler {
       return Response(200, body: 'Primeria Rota');
     });
 
+    router.get('/ola/mundo/<usuario>', (Request request, String usuario) {
+      return Response(200, body: 'Ola mundo $usuario');
+    });
+
+    router.get('/query', (Request request) {
+      String? nome = request.url.queryParameters['nome'];
+      return Response(200, body: 'Query eh: $nome');
+    });
+
     return router;
   }
 }
