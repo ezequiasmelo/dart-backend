@@ -9,6 +9,18 @@ class BlogApi {
       return Response.ok('Noticia 1');
     });
 
+    router.post('/blog/noticias', (Request req) {
+      return Response.ok('Noticia 1');
+    });
+
+    router.put('/blog/noticias/<id>', (Request req, int id) {
+      return Response.ok('Noticia $id');
+    });
+
+    router.delete('/blog/noticias/<id>', (Request req, int id) {
+      return Response.ok('Noticia $id');
+    });
+
     return router;
   }
 }
