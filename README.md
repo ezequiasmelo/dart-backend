@@ -10,3 +10,5 @@ in `lib/`, and example unit test in `test/`.
     shelf
 
     shelf_router
+
+    dart_jsonwebtoken
