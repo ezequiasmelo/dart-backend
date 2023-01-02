@@ -5,8 +5,6 @@ import 'security_service.dart';
 
 import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
 
-import 'validate/api_router_validate.dart';
-
 class SecurityServiceImp implements SecurityService<JWT> {
   SecurityServiceImp() {
     print('Objeto Criado ${DateTime.now().microsecondsSinceEpoch}');
@@ -66,11 +64,6 @@ class SecurityServiceImp implements SecurityService<JWT> {
   @override
   Middleware get verifyJwt => createMiddleware(
         requestHandler: (Request req) {
-          var apiSecutiry =
-              ApiRouterValidate().add('login').add('xpto').add('register');
-
-          if (apiSecutiry.isPublic(req.url.path)) return null;
-
           if (req.context['jwt'] == null) {
             return Response.forbidden('Not Authorized');
           }
