@@ -11,7 +11,10 @@ class BlogApi extends Api {
   BlogApi(this._service);
 
   @override
-  Handler getHandler({List<Middleware>? middlewares}) {
+  Handler getHandler({
+    List<Middleware>? middlewares,
+    bool isSecurity = false,
+  }) {
     Router router = Router();
 
     router.get('/blog/noticias', (Request req) {
@@ -37,6 +40,10 @@ class BlogApi extends Api {
       return Response.ok('Noticia $id');
     });
 
-    return createHandler(router: router, middlewares: middlewares);
+    return createHandler(
+      router: router,
+      middlewares: middlewares,
+      isSecurity: isSecurity,
+    );
   }
 }
