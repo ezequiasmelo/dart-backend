@@ -12,3 +12,5 @@ in `lib/`, and example unit test in `test/`.
     shelf_router
 
     dart_jsonwebtoken
+
+    mysql1
