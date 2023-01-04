@@ -13,7 +13,7 @@ class Injects {
   static DependencyInjector initialize() {
     var di = DependencyInjector();
 
-    di.register<DBCOnfiguration>(() => MysqlDBConfiguration());
+    di.register<DBConfiguration>(() => MysqlDBConfiguration());
 
     di.register<SecurityService>(() => SecurityServiceImp());
 

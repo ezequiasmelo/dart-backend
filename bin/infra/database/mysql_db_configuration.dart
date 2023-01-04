@@ -3,7 +3,7 @@ import 'package:mysql1/mysql1.dart';
 import '../../utils/custom_env.dart';
 import 'db_configuration.dart';
 
-class MysqlDBConfiguration implements DBCOnfiguration {
+class MysqlDBConfiguration implements DBConfiguration {
   MySqlConnection? _connection;
 
   @override

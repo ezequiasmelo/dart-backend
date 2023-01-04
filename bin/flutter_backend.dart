@@ -2,6 +2,7 @@ import 'package:mysql1/mysql1.dart';
 import 'package:shelf/shelf.dart';
 import 'apis/blog_api.dart';
 import 'apis/login_api.dart';
+import 'dao/usuario_dao.dart';
 import 'infra/custom_server.dart';
 import 'infra/database/db_configuration.dart';
 import 'infra/dependency_injector/injects.dart';
@@ -14,13 +15,9 @@ void main() async {
 
   final _di = Injects.initialize();
 
-  var conn = await _di<DBCOnfiguration>().connection;
-
-  var result = await conn.query('SELECT * FROM usuarios');
-  for (ResultRow r in result) {
-    UsuarioModel usuario = UsuarioModel.fromMap(r.fields);
-    print(usuario.toString());
-  }
+  UsuarioDAO _usuarioDAO = UsuarioDAO(_di<DBConfiguration>());
+  // (await _usuarioDAO.findAll()).forEach(print);
+  print(await _usuarioDAO.findOne(1));
 
   var cascadeHandler = Cascade()
       .add(_di<LoginApi>().getHandler())
