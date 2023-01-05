@@ -48,6 +48,14 @@ class UsuarioDAO implements DAO<UsuarioModel> {
     return result.affectedRows > 0;
   }
 
+  Future<UsuarioModel?> findByEmail(String email) async {
+    var result = await _execQuery(
+        'SELECT id, email, password FROM usuarios WHERE email = ?', [email]);
+    return result.affectedRows == 0
+        ? null
+        : UsuarioModel.fromEmail(result.first.fields);
+  }
+
   _execQuery(String sql, [List? params]) async {
     var connection = await _dbConfiguration.connection;
     return await connection.query(sql, params);

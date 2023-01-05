@@ -14,3 +14,5 @@ in `lib/`, and example unit test in `test/`.
     dart_jsonwebtoken
 
     mysql1
+
+    password_dart
