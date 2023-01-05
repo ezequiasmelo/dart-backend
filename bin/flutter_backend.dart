@@ -1,13 +1,10 @@
-import 'package:mysql1/mysql1.dart';
 import 'package:shelf/shelf.dart';
 import 'apis/blog_api.dart';
 import 'apis/login_api.dart';
-import 'dao/usuario_dao.dart';
+import 'apis/usuario_api.dart';
 import 'infra/custom_server.dart';
-import 'infra/database/db_configuration.dart';
 import 'infra/dependency_injector/injects.dart';
 import 'infra/middleware_interception.dart';
-import 'models/usuario_model.dart';
 import 'utils/custom_env.dart';
 
 void main() async {
@@ -15,13 +12,10 @@ void main() async {
 
   final _di = Injects.initialize();
 
-  UsuarioDAO _usuarioDAO = UsuarioDAO(_di<DBConfiguration>());
-  // (await _usuarioDAO.findAll()).forEach(print);
-  print(await _usuarioDAO.findOne(1));
-
   var cascadeHandler = Cascade()
       .add(_di<LoginApi>().getHandler())
       .add(_di<BlogApi>().getHandler(isSecurity: true))
+      .add(_di.get<UsuarioApi>().getHandler(isSecurity: true))
       .handler;
 
   var handler = Pipeline()
