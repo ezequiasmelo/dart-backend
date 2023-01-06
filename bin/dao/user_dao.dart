@@ -1,13 +1,13 @@
 import '../infra/database/db_configuration.dart';
-import '../models/usuario_model.dart';
+import '../models/user_model.dart';
 import 'dao.dart';
 
-class UsuarioDAO implements DAO<UsuarioModel> {
+class UserDAO implements DAO<UserModel> {
   final DBConfiguration _dbConfiguration;
-  UsuarioDAO(this._dbConfiguration);
+  UserDAO(this._dbConfiguration);
 
   @override
-  Future<bool> create(UsuarioModel value) async {
+  Future<bool> create(UserModel value) async {
     var result = await _dbConfiguration.execQuery(
       'INSERT INTO usuarios (nome, email, password) VALUES (?, ?, ?)',
       [value.name, value.email, value.password],
@@ -23,24 +23,24 @@ class UsuarioDAO implements DAO<UsuarioModel> {
   }
 
   @override
-  Future<List<UsuarioModel>> findAll() async {
+  Future<List<UserModel>> findAll() async {
     var result = await _dbConfiguration.execQuery('SELECT * FROM usuarios');
     // return (result as List).map((e) => UsuarioModel.fromMap(e.fields)).toList();
     return result
-        .map((r) => UsuarioModel.fromMap(r.fields))
+        .map((r) => UserModel.fromMap(r.fields))
         .toList()
-        .cast<UsuarioModel>();
+        .cast<UserModel>();
   }
 
   @override
-  Future<UsuarioModel?> findOne(int id) async {
+  Future<UserModel?> findOne(int id) async {
     var result = await _dbConfiguration
         .execQuery('SELECT * FROM usuarios WHERE id = ?', [id]);
-    return result.isEmpty ? null : UsuarioModel.fromMap(result.first.fields);
+    return result.isEmpty ? null : UserModel.fromMap(result.first.fields);
   }
 
   @override
-  Future<bool> update(UsuarioModel value) async {
+  Future<bool> update(UserModel value) async {
     var result = await _dbConfiguration.execQuery(
       'UPDATE usuarios SET nome = ?, password = ? WHERE id = ?',
       [value.name, value.password, value.id],
@@ -48,11 +48,11 @@ class UsuarioDAO implements DAO<UsuarioModel> {
     return result.affectedRows > 0;
   }
 
-  Future<UsuarioModel?> findByEmail(String email) async {
+  Future<UserModel?> findByEmail(String email) async {
     var result = await _dbConfiguration.execQuery(
         'SELECT id, email, password FROM usuarios WHERE email = ?', [email]);
     return result.affectedRows == 0
         ? null
-        : UsuarioModel.fromEmail(result.first.fields);
+        : UserModel.fromEmail(result.first.fields);
   }
 }

@@ -1,19 +1,15 @@
 import 'dart:convert';
 
 import 'package:shelf/shelf.dart';
-import 'package:shelf/src/middleware.dart';
-
-import 'package:shelf/src/handler.dart';
 import 'package:shelf_router/shelf_router.dart';
-
-import '../models/usuario_model.dart';
-import '../services/usuario_service.dart';
+import '../models/user_model.dart';
+import '../services/user_service.dart';
 import 'api.dart';
 
-class UsuarioApi extends Api {
-  final UsuarioService _usuarioService;
+class UserApi extends Api {
+  final UserService _userService;
 
-  UsuarioApi(this._usuarioService);
+  UserApi(this._userService);
 
   @override
   Handler getHandler({
@@ -25,8 +21,8 @@ class UsuarioApi extends Api {
     router.post('/user', (Request req) async {
       var body = await req.readAsString();
       if (body.isEmpty) return Response(400);
-      var user = UsuarioModel.fromRequest(jsonDecode(body));
-      var result = await _usuarioService.save(user);
+      var user = UserModel.fromRequest(jsonDecode(body));
+      var result = await _userService.save(user);
       return result ? Response(201) : Response(500);
     });
 

@@ -1,7 +1,7 @@
 import 'package:shelf/shelf.dart';
 import 'apis/noticias_api.dart';
 import 'apis/login_api.dart';
-import 'apis/usuario_api.dart';
+import 'apis/user_api.dart';
 import 'infra/custom_server.dart';
 import 'infra/dependency_injector/injects.dart';
 import 'infra/middleware_interception.dart';
@@ -15,7 +15,7 @@ void main() async {
   var cascadeHandler = Cascade()
       .add(_di<LoginApi>().getHandler())
       .add(_di<NoticiasApi>().getHandler(isSecurity: true))
-      .add(_di.get<UsuarioApi>().getHandler(isSecurity: true))
+      .add(_di.get<UserApi>().getHandler(isSecurity: true))
       .handler;
 
   var handler = Pipeline()
