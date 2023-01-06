@@ -1,31 +1,29 @@
 class NoticiaModel {
-  final int? id;
-  final String title;
-  final String description;
-  final String image;
-  final DateTime createdAt;
-  final DateTime? updatedAt;
+  int? id;
+  String? title;
+  String? description;
+  DateTime? dtCreated;
+  DateTime? dtUpdated;
+  int? userId;
 
-  NoticiaModel(
-    this.id,
-    this.title,
-    this.description,
-    this.image,
-    this.createdAt,
-    this.updatedAt,
-  );
+  NoticiaModel();
 
-  factory NoticiaModel.fromJson(Map map) {
-    return NoticiaModel(
-      map['id'] ?? '',
-      map['title'],
-      map['description'],
-      map['image'],
-      DateTime.fromMillisecondsSinceEpoch(map['createdAt']),
-      map['updatedAt'] != null
-          ? DateTime.fromMillisecondsSinceEpoch(map['updatedAt'])
-          : null,
-    );
+  factory NoticiaModel.fromMap(Map map) {
+    return NoticiaModel()
+      ..id = map['id']
+      ..title = map['titulo']
+      ..description = map['descricao'].toString()
+      ..dtCreated = map['dt_criacao']
+      ..dtUpdated = map['dt_atualizacao']
+      ..userId = map['id_usuario'];
+  }
+
+  factory NoticiaModel.fromRequest(Map map) {
+    return NoticiaModel()
+      ..id = map['id']
+      ..title = map['title']
+      ..description = map['description']
+      ..userId = map['userId']?.toInt();
   }
 
   Map toJson() {
@@ -33,12 +31,11 @@ class NoticiaModel {
       'id': id,
       'title': title,
       'description': description,
-      'image': image,
     };
   }
 
   @override
   String toString() {
-    return 'NoticiaModel(id: $id, title: $title, description: $description, image: $image, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'NoticiaModel(id: $id, title: $title, description: $description, dtCreated: $dtCreated, dtUpdated: $dtUpdated, userId: $userId)';
   }
 }
