@@ -7,12 +7,12 @@ in `lib/`, and example unit test in `test/`.
 
 ## packages
 
-    shelf
+* [shelf](https://pub.dev/packages/shelf)
 
-    shelf_router
+* [shelf_router](https://pub.dev/packages/shelf_router)
 
-    dart_jsonwebtoken
+* [dart_jsonwebtoken](https://pub.dev/packages/dart_jsonwebtoken)
 
-    mysql1
+* [mysql1](https://pub.dev/packages/mysql1)
 
-    password_dart
+* [password_dart](https://pub.dev/packages/password_dart)

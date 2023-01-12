@@ -25,7 +25,6 @@ class UserDAO implements DAO<UserModel> {
   @override
   Future<List<UserModel>> findAll() async {
     var result = await _dbConfiguration.execQuery('SELECT * FROM usuarios');
-    // return (result as List).map((e) => UsuarioModel.fromMap(e.fields)).toList();
     return result
         .map((r) => UserModel.fromMap(r.fields))
         .toList()

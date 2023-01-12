@@ -21,7 +21,7 @@ class MysqlDBConfiguration implements DBConfiguration {
           host: await CustomEnv.get<String>(key: 'db_host'),
           port: await CustomEnv.get<int>(key: 'db_port'),
           user: await CustomEnv.get<String>(key: 'db_user'),
-          // password: await CustomEnv.get<String>(key: 'db_pass'),
+          password: await CustomEnv.get<String>(key: 'db_pass'),
           db: await CustomEnv.get<String>(key: 'db_schema'),
         ),
       );
