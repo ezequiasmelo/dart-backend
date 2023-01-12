@@ -3,7 +3,7 @@ in `lib/`, and example unit test in `test/`.
 
 ## commands
 
-    dart create flutter-backend
+    dart create dart-backend
 
 ## packages
 

@@ -5,10 +5,10 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "flutter-backend",
+            "name": "dart-backend",
             "request": "launch",
             "type": "dart",
-            "program": "bin/flutter_backend.dart"
+            "program": "bin/dart_backend.dart"
         }
     ]
 }
